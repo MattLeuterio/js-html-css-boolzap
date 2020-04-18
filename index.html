@@ -49,7 +49,7 @@
                 </div>
                 
                 <div class="side_account__profiles">
-                    <div class="profile_row u_flex active">
+                    <div data-element="0" class="profile_row u_flex active">
                         <div class="profile_col__img">
                             <img class="imageUser u_userImg" src="assets/img/avatar_1.jpg" alt="michele_img">
                         </div>
@@ -61,7 +61,7 @@
                             <h6>17.53</h6>
                         </div>
                     </div>
-                    <div class="profile_row u_flex">
+                    <div data-element="1" class="profile_row u_flex">
                         <div class="profile_col__img">
                             <img class="imageUser u_userImg" src="assets/img/avatar_2.jpg" alt="fabio_img">
                         </div>
@@ -73,7 +73,7 @@
                             <h6>17.53</h6>
                         </div>
                     </div>
-                    <div class="profile_row u_flex">
+                    <div data-element="2" class="profile_row u_flex">
                         <div class="profile_col__img">
                             <img class="imageUser u_userImg" src="assets/img/avatar_3.jpg" alt="samuele_img">
                         </div>
@@ -85,7 +85,7 @@
                             <h6>17.53</h6>
                         </div>
                     </div>
-                    <div class="profile_row u_flex">
+                    <div data-element="3" class="profile_row u_flex">
                         <div class="profile_col__img">
                             <img class="imageUser u_userImg" src="assets/img/avatar_4.jpg" alt="alessandroB_img">
                         </div>
@@ -97,7 +97,7 @@
                             <h6>17.53</h6>
                         </div>
                     </div>
-                    <div class="profile_row u_flex">
+                    <div data-element="4" class="profile_row u_flex">
                         <div class="profile_col__img">
                             <img class="imageUser u_userImg" src="assets/img/avatar_5.jpg" alt="alessandroL_img">
                         </div>
@@ -109,7 +109,7 @@
                             <h6>17.53</h6>
                         </div>
                     </div>
-                    <div class="profile_row u_flex">
+                    <div data-element="5" class="profile_row u_flex">
                         <div class="profile_col__img">
                             <img class="imageUser u_userImg" src="assets/img/avatar_6.jpg" alt="Claudia_img">
                         </div>
@@ -121,7 +121,7 @@
                             <h6>17.53</h6>
                         </div>
                     </div>
-                    <div class="profile_row u_flex">
+                    <div data-element="6" class="profile_row u_flex">
                         <div class="profile_col__img">
                             <img class="imageUser u_userImg" src="assets/img/avatar_7.jpg" alt="Davide_img">
                         </div>
@@ -133,7 +133,7 @@
                             <h6>17.53</h6>
                         </div>
                     </div>
-                    <div class="profile_row u_flex">
+                    <div data-element="7" class="profile_row u_flex">
                         <div class="profile_col__img">
                             <img class="imageUser u_userImg" src="assets/img/avatar_8.jpg" alt="Federico_img">
                         </div>
@@ -168,15 +168,45 @@
                 </div>
             </header>
             <main class="chat_row-chatting">
-                <ul>
-                    <li class="myMex">Ciao come stai? <span class="hMex">06:20</span></li>
-                    <li class="usMex ">Bene! tu? <span class="hMex">14:21</span></li>
-                    <li class="myMex">Tutto bene <span class="hMex">21:41</span></li>
+                <ul data-element="0" class="active-chat">
+                    <li class="myMex">Ciao<span class="hMex">06:20</span></li>
+                    <li class="usMex ">Sono Michele<span class="hMex">14:21</span></li>
+                    <li class="myMex">Chi te l'ha chiesto?<span class="hMex">21:41</span></li>
                 </ul>
-                <ul>
-                    <li class="myMex">Ciao come stai? <span class="hMex">06:20</span></li>
-                    <li class="usMex ">Bene! tu? <span class="hMex">14:21</span></li>
-                    <li class="myMex">Tutto bene <span class="hMex">21:41</span></li>
+                <ul data-element="1">
+                    <li class="myMex">Ciao<span class="hMex">06:20</span></li>
+                    <li class="usMex ">Sono Fabio<span class="hMex">14:21</span></li>
+                    <li class="myMex">Chi te l'ha chiesto?<span class="hMex">21:41</span></li>
+                </ul>
+                <ul data-element="2">
+                    <li class="myMex">Ciao<span class="hMex">06:20</span></li>
+                    <li class="usMex ">Sono Samuele <span class="hMex">14:21</span></li>
+                    <li class="myMex">Chi te l'ha chiesto?<span class="hMex">21:41</span></li>
+                </ul>
+                <ul data-element="3">
+                    <li class="myMex">Ciao<span class="hMex">06:20</span></li>
+                    <li class="usMex ">Sono Alessandro B. <span class="hMex">14:21</span></li>
+                    <li class="myMex">Chi te l'ha chiesto?<span class="hMex">21:41</span></li>
+                </ul>
+                <ul data-element="4">
+                    <li class="myMex">Ciao<span class="hMex">06:20</span></li>
+                    <li class="usMex ">Sono Alessandro L. <span class="hMex">14:21</span></li>
+                    <li class="myMex">Chi te l'ha chiesto?<span class="hMex">21:41</span></li>
+                </ul>
+                <ul data-element="5">
+                    <li class="myMex">Ciao<span class="hMex">06:20</span></li>
+                    <li class="usMex ">Sono Claudia <span class="hMex">14:21</span></li>
+                    <li class="myMex">Chi te l'ha chiesto?<span class="hMex">21:41</span></li>
+                </ul>
+                <ul data-element="6">
+                    <li class="myMex">Ciao<span class="hMex">06:20</span></li>
+                    <li class="usMex ">Sono Davide <span class="hMex">14:21</span></li>
+                    <li class="myMex">Chi te l'ha chiesto?<span class="hMex">21:41</span></li>
+                </ul>
+                <ul data-element="7">
+                    <li class="myMex">Ciao<span class="hMex">06:20</span></li>
+                    <li class="usMex ">Sono Federico<span class="hMex">14:21</span></li>
+                    <li class="myMex">Chi te l'ha chiesto?<span class="hMex">21:41</span></li>
                 </ul>
             </main>
             <footer class="chat_row-send u_flex">

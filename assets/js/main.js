@@ -33,14 +33,14 @@ $(document).ready( function() {
 
  $('.chat_row-chatting ul').each( function() {
 
-    arrayChat.push($(this));
+    arrayChat.push($(this));  
 
  });
 
  console.table(arrayUser);
  console.table(arrayChat);
  
- 
+
  
 
 // aggiungo Funzionalità al click su una RowProfile
@@ -49,6 +49,23 @@ accountRow.click( function() {
     // Classe css "active" per evidenziare il profilo
     $('.profile_row.active').removeClass('active');
     $(this).addClass('active');
+
+    var attrThis = $(this).attr('data-element');
+    console.log(attrThis);
+    
+    // uso un each per trovare il data-element che ha lo stesso valore di quello cliccato
+    $('.chat_row-chatting ul').each( function(valore) { 
+
+        if(attrThis == valore) {
+            //rimuovo la classe dove c'è
+            $('.chat_row-chatting ul.active-chat').removeClass('active-chat');
+            //l'aggiungo sull'ul restituito
+            $(this).addClass('active-chat')
+            
+            ulChat = $('.chat_row-chatting ul.active-chat');
+        }
+
+    });
 
     // Leggo il nome utente e l'immagine della Row
     var nameUser = $('.profile_row.active .profile_col__info .nameUser').text();
@@ -99,6 +116,7 @@ $(chatInput).keyup(function(event) {
             myMexClone.prepend(chatInput.val());
             
             //Inserisco mex nella ul della chat
+
             ulChat.append(myMexClone);
 
             //Puliamo il campo input
@@ -152,7 +170,7 @@ $(iconActionSend).click( function() {
 
 function hour() {
     var dateNow = new Date(); // prendo info data dal sistema
-    hourNow = dateNow.getHours() + ':' + (dateNow.getMinutes()<10?'0':'') + dateNow.getMinutes(); // assegno solo ora e minuti
+    hourNow = (dateNow.getHours()<10?'0':'') + dateNow.getHours() + ':' + (dateNow.getMinutes()<10?'0':'') + dateNow.getMinutes(); // assegno solo ora e minuti
 }
 
 
