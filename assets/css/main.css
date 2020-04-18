@@ -70,7 +70,15 @@ a {
 }
 
 .active {
-    background: #eaebeb;
+    background: #eaebeb; /* jQuery */
+}
+
+.chat_row-chatting ul.active-chat {
+    display: block;
+}
+
+.chat_row-chatting ul { 
+    display: none; /* jQuery */
 }
 
 /* APP  */

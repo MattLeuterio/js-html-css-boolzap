@@ -17,20 +17,50 @@ $(document).ready( function() {
 
  var accountRow = $('.side_account__profiles .profile_row');
  var chatInput = $('.col_send__input .chatInput');
- var iconActionSend = $('.col_send__action .actionSend')
- var ulChat = $('.chat_row-chatting ul')
+ var iconActionSend = $('.col_send__action .actionSend');
+ var ulChat = $('.chat_row-chatting ul.active-chat');
 
+ var arrayUser = [];
+ var arrayChat = [];
+
+
+ //array creati per fare un test. Li lascio come appunto per me stesso
+ accountRow.each( function() {
+
+    arrayUser.push($(this));
+
+ });
+
+ $('.chat_row-chatting ul').each( function() {
+
+    arrayChat.push($(this));
+
+ });
+
+ console.table(arrayUser);
+ console.table(arrayChat);
  
- console.log(accountRow);
- console.log(chatInput);
  
  
 
-// aggiungo alla RowProfile cliccata la classe "active"
+// aggiungo Funzionalità al click su una RowProfile
 accountRow.click( function() { 
 
+    // Classe css "active" per evidenziare il profilo
     $('.profile_row.active').removeClass('active');
     $(this).addClass('active');
+
+    // Leggo il nome utente e l'immagine della Row
+    var nameUser = $('.profile_row.active .profile_col__info .nameUser').text();
+    var imgUser = $('.profile_row.active .profile_col__img').html();
+    console.log(nameUser);
+    console.log(imgUser);
+    
+    // Stampo il nome utente e l'immagine letti nella row INFO della CHAT
+    $('.chat-container .chat_row-info .col_info__name .nameUser').text(nameUser);
+    $('.chat-container .chat_row-info .col_info__img').html(imgUser);
+
+    nameUser = '';
 
 });
 
@@ -75,7 +105,10 @@ $(chatInput).keyup(function(event) {
             chatInput.val('');
 
             //pulisco lo span con l'orario
-            h.html('');            
+            h.html('');     
+            
+            // Chiamo una funzione che mi da una risposta automatica dopo 1.5s
+            setTimeout(usMex, 1500);
         };
     };
 });
@@ -106,10 +139,12 @@ $(iconActionSend).click( function() {
             chatInput.val('');
 
             //pulisco lo span con l'orario
-            h.html('');            
+            h.html('');
+            
+            // Chiamo una funzione che mi da una risposta automatica dopo 1.5s
+            setTimeout(usMex, 1500);
         };
 });
-
 
 
 
@@ -119,5 +154,24 @@ function hour() {
     var dateNow = new Date(); // prendo info data dal sistema
     hourNow = dateNow.getHours() + ':' + (dateNow.getMinutes()<10?'0':'') + dateNow.getMinutes(); // assegno solo ora e minuti
 }
+
+
+function usMex() {
+    // Chiamo funzione hour per avere orario esatto dell'invio
+    hour();
+    //Inserisco orario nello span
+    var h = $('.template .usMex span');
+    h.html(hourNow);
+
+    //Clono il template
+    var usMexClone = $('.template .usMex').clone();
+
+    //Inserisco mex nella ul della chat
+    ulChat.append(usMexClone);
+
+    //pulisco lo span con l'orario
+     h.html('');
+
+};
 
 }); // <- End Doc Ready
