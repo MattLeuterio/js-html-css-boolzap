@@ -214,8 +214,8 @@ a {
     background: #eaebeb;
 }
 
-.profile_row:last-child {
-    border: 0;
+.profile_col__img {
+    max-width: 50px;
 }
 
 .profile_col__info {

@@ -51,8 +51,7 @@ accountRow.click( function() {
     $(this).addClass('active');
 
     var attrThis = $(this).attr('data-element');
-    console.log(attrThis);
-    
+
     // uso un each per trovare il data-element che ha lo stesso valore di quello cliccato
     $('.chat_row-chatting ul').each( function(valore) { 
 
@@ -79,6 +78,15 @@ accountRow.click( function() {
 
     nameUser = '';
 
+});
+
+//Filtro la lista quando comincio a scrivere nell'input
+$('.side_account__search input').on('keyup', function() {
+    var value = $(this).val().toLowerCase();
+    $('#mylist li').filter(function () {
+
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)    
+    }); 
 });
 
 // cambio icona micro con icona invio al focus dell'input chat
