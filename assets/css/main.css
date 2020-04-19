@@ -86,7 +86,7 @@ a {
 .app {
     display: flex;
     background: #fff;
-    width: 80%;
+    width: 1500px;
     min-width: 900px;
     height: 95%;
 }
