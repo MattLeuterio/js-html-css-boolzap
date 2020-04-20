@@ -46,8 +46,13 @@
             <div class="side_account">
 
                 <div class="side_account__search u_flex">
-                    <a><i class="fas fa-search"></i></a>
-                    <input class="search" type="text" placeholder="Cerca o inizia una nuova chat">
+                    <label for='search-input'><i class="fas fa-search"></i></label>
+                    <input 
+                    class="search" 
+                    type="text" 
+                    name="search-input" 
+                    id="search-input" 
+                    placeholder="Cerca o inizia una nuova chat">
                 </div>
                 
                 <div class="side_account__profiles">
@@ -188,45 +193,357 @@
                 </div>
             </header>
             <main class="chat_row-chatting">
-                <ul data-element="0" class="active-chat">
-                    <li class="myMex">Ciao<span class="hMex">06:20</span></li>
-                    <li class="usMex ">Sono Michele<span class="hMex">14:21</span></li>
-                    <li class="myMex">Chi te l'ha chiesto?<span class="hMex">21:41</span></li>
+                <ul data-element="0" class=" ul-conversation active-chat">
+                    <li class="mex myMex">Ciao
+                        <span class="hMex">06:20</span>
+                        <span class="dropdown-icon">
+                            <i class="fas fa-chevron-down"></i>
+                            <ul class="dropdown_menu">
+                                <li class="dropdown_link link_info">
+                                    <a href="#">Info</a>
+                                </li>
+                                <li class="dropdown_link link_delete">
+                                    <a href="#">Delete Message</a>
+                                </li>
+                            </ul>
+                        </span>
+                    </li>
+                    <li class="mex usMex ">Sono Michele
+                        <span class="hMex">14:21</span>
+                        <span class="dropdown-icon">
+                            <i class="fas fa-chevron-down"></i>
+                            <ul class="dropdown_menu">
+                                <li class="dropdown_link link_info">
+                                    <a href="#">Info</a>
+                                </li>
+                                <li class="dropdown_link link_delete">
+                                    <a href="#">Delete Message</a>
+                                </li>
+                            </ul>
+                        </span>
+                    </li>
+                    <li class="mex myMex">Chi te l'ha chiesto?
+                        <span class="hMex">21:41</span>
+                        <span class="dropdown-icon">
+                            <i class="fas fa-chevron-down"></i>
+                            <ul class="dropdown_menu">
+                                <li class="dropdown_link link_info">
+                                    <a href="#">Info</a>
+                                </li>
+                                <li class="dropdown_link link_delete">
+                                    <a href="#">Delete Message</a>
+                                </li>
+                            </ul>
+                        </span>
+                    </li>
                 </ul>
-                <ul data-element="1">
-                    <li class="myMex">Ciao<span class="hMex">06:20</span></li>
-                    <li class="usMex ">Sono Fabio<span class="hMex">14:21</span></li>
-                    <li class="myMex">Chi te l'ha chiesto?<span class="hMex">21:41</span></li>
+                <ul class="ul-conversation" data-element="1">
+                    <li class="mex myMex">Ciao
+                        <span class="hMex">06:20</span>
+                        <span class="dropdown-icon">
+                            <i class="fas fa-chevron-down"></i>
+                            <ul class="dropdown_menu">
+                                <li class="dropdown_link link_info">
+                                    <a href="#">Info</a>
+                                </li>
+                                <li class="dropdown_link link_delete">
+                                    <a href="#">Delete Message</a>
+                                </li>
+                            </ul>
+                        </span>
+                    </li>
+                    <li class="mex usMex ">Sono Fabio
+                        <span class="hMex">14:21</span>
+                        <span class="dropdown-icon">
+                            <i class="fas fa-chevron-down"></i>
+                            <ul class="dropdown_menu">
+                                <li class="dropdown_link link_info">
+                                    <a href="#">Info</a>
+                                </li>
+                                <li class="dropdown_link link_delete">
+                                    <a href="#">Delete Message</a>
+                                </li>
+                            </ul>
+                        </span>
+                    </li>
+                    <li class="mex myMex">Chi te l'ha chiesto?
+                        <span class="hMex">21:41</span>
+                        <span class="dropdown-icon">
+                            <i class="fas fa-chevron-down"></i>
+                            <ul class="dropdown_menu">
+                                <li class="dropdown_link link_info">
+                                    <a href="#">Info</a>
+                                </li>
+                                <li class="dropdown_link link_delete">
+                                    <a href="#">Delete Message</a>
+                                </li>
+                            </ul>
+                        </span>
+                    </li>
                 </ul>
-                <ul data-element="2">
-                    <li class="myMex">Ciao<span class="hMex">06:20</span></li>
-                    <li class="usMex ">Sono Samuele <span class="hMex">14:21</span></li>
-                    <li class="myMex">Chi te l'ha chiesto?<span class="hMex">21:41</span></li>
+                <ul class="ul-conversation" data-element="2">
+                    <li class="mex myMex">Ciao
+                        <span class="hMex">06:20</span>
+                        <span class="dropdown-icon">
+                            <i class="fas fa-chevron-down"></i>
+                            <ul class="dropdown_menu">
+                                <li class="dropdown_link link_info">
+                                    <a href="#">Info</a>
+                                </li>
+                                <li class="dropdown_link link_delete">
+                                    <a href="#">Delete Message</a>
+                                </li>
+                            </ul>
+                        </span>
+                    </li>
+                    <li class="mex usMex ">Sono Samuele
+                        <span class="hMex">14:21</span>
+                        <span class="dropdown-icon">
+                            <i class="fas fa-chevron-down"></i>
+                            <ul class="dropdown_menu">
+                                <li class="dropdown_link link_info">
+                                    <a href="#">Info</a>
+                                </li>
+                                <li class="dropdown_link link_delete">
+                                    <a href="#">Delete Message</a>
+                                </li>
+                            </ul>
+                        </span>
+                    </li>
+                    <li class="mex myMex">Chi te l'ha chiesto?
+                        <span class="hMex">21:41</span>
+                        <span class="dropdown-icon">
+                            <i class="fas fa-chevron-down"></i>
+                            <ul class="dropdown_menu">
+                                <li class="dropdown_link link_info">
+                                    <a href="#">Info</a>
+                                </li>
+                                <li class="dropdown_link link_delete">
+                                    <a href="#">Delete Message</a>
+                                </li>
+                            </ul>
+                        </span>
+                    </li>
                 </ul>
-                <ul data-element="3">
-                    <li class="myMex">Ciao<span class="hMex">06:20</span></li>
-                    <li class="usMex ">Sono Alessandro B. <span class="hMex">14:21</span></li>
-                    <li class="myMex">Chi te l'ha chiesto?<span class="hMex">21:41</span></li>
+                <ul class="ul-conversation" data-element="3">
+                    <li class="mex myMex">Ciao
+                        <span class="hMex">06:20</span>
+                        <span class="dropdown-icon">
+                            <i class="fas fa-chevron-down"></i>
+                            <ul class="dropdown_menu">
+                                <li class="dropdown_link link_info">
+                                    <a href="#">Info</a>
+                                </li>
+                                <li class="dropdown_link link_delete">
+                                    <a href="#">Delete Message</a>
+                                </li>
+                            </ul>
+                        </span>
+                    </li>
+                    <li class="mex usMex ">Sono Alessandro B. 
+                        <span class="hMex">14:21</span>
+                        <span class="dropdown-icon">
+                            <i class="fas fa-chevron-down"></i>
+                            <ul class="dropdown_menu">
+                                <li class="dropdown_link link_info">
+                                    <a href="#">Info</a>
+                                </li>
+                                <li class="dropdown_link link_delete">
+                                    <a href="#">Delete Message</a>
+                                </li>
+                            </ul>
+                        </span>
+                    </li>
+                    <li class="mex myMex">Chi te l'ha chiesto?
+                        <span class="hMex">21:41</span>
+                        <span class="dropdown-icon">
+                            <i class="fas fa-chevron-down"></i>
+                            <ul class="dropdown_menu">
+                                <li class="dropdown_link link_info">
+                                    <a href="#">Info</a>
+                                </li>
+                                <li class="dropdown_link link_delete">
+                                    <a href="#">Delete Message</a>
+                                </li>
+                            </ul>
+                        </span>
+                    </li>
                 </ul>
-                <ul data-element="4">
-                    <li class="myMex">Ciao<span class="hMex">06:20</span></li>
-                    <li class="usMex ">Sono Alessandro L. <span class="hMex">14:21</span></li>
-                    <li class="myMex">Chi te l'ha chiesto?<span class="hMex">21:41</span></li>
+                <ul class="ul-conversation" data-element="4">
+                    <li class="mex myMex">Ciao
+                        <span class="hMex">06:20</span>
+                        <span class="dropdown-icon">
+                            <i class="fas fa-chevron-down"></i>
+                            <ul class="dropdown_menu">
+                                <li class="dropdown_link link_info">
+                                    <a href="#">Info</a>
+                                </li>
+                                <li class="dropdown_link link_delete">
+                                    <a href="#">Delete Message</a>
+                                </li>
+                            </ul>
+                        </span>
+                    </li>
+                    <li class="mex usMex ">Sono Alessandro L. 
+                        <span class="hMex">14:21</span>
+                        <span class="dropdown-icon">
+                            <i class="fas fa-chevron-down"></i>
+                            <ul class="dropdown_menu">
+                                <li class="dropdown_link link_info">
+                                    <a href="#">Info</a>
+                                </li>
+                                <li class="dropdown_link link_delete">
+                                    <a href="#">Delete Message</a>
+                                </li>
+                            </ul>
+                        </span>
+                    </li>
+                    <li class="mex myMex">Chi te l'ha chiesto?
+                        <span class="hMex">21:41</span>
+                        <span class="dropdown-icon">
+                            <i class="fas fa-chevron-down"></i>
+                            <ul class="dropdown_menu">
+                                <li class="dropdown_link link_info">
+                                    <a href="#">Info</a>
+                                </li>
+                                <li class="dropdown_link link_delete">
+                                    <a href="#">Delete Message</a>
+                                </li>
+                            </ul>
+                        </span>
+                    </li>
                 </ul>
-                <ul data-element="5">
-                    <li class="myMex">Ciao<span class="hMex">06:20</span></li>
-                    <li class="usMex ">Sono Claudia <span class="hMex">14:21</span></li>
-                    <li class="myMex">Chi te l'ha chiesto?<span class="hMex">21:41</span></li>
+                <ul class="ul-conversation" data-element="5">
+                    <li class="mex myMex">Ciao
+                        <span class="hMex">06:20</span>
+                        <span class="dropdown-icon">
+                            <i class="fas fa-chevron-down"></i>
+                            <ul class="dropdown_menu">
+                                <li class="dropdown_link link_info">
+                                    <a href="#">Info</a>
+                                </li>
+                                <li class="dropdown_link link_delete">
+                                    <a href="#">Delete Message</a>
+                                </li>
+                            </ul>
+                        </span>
+                    </li>
+                    <li class="mex usMex ">Sono Claudia 
+                        <span class="hMex">14:21</span>
+                        <span class="dropdown-icon">
+                            <i class="fas fa-chevron-down"></i>
+                            <ul class="dropdown_menu">
+                                <li class="dropdown_link link_info">
+                                    <a href="#">Info</a>
+                                </li>
+                                <li class="dropdown_link link_delete">
+                                    <a href="#">Delete Message</a>
+                                </li>
+                            </ul>
+                        </span>
+                    </li>
+                    <li class="mex myMex">Chi te l'ha chiesto?
+                        <span class="hMex">21:41</span>
+                        <span class="dropdown-icon">
+                            <i class="fas fa-chevron-down"></i>
+                            <ul class="dropdown_menu">
+                                <li class="dropdown_link link_info">
+                                    <a href="#">Info</a>
+                                </li>
+                                <li class="dropdown_link link_delete">
+                                    <a href="#">Delete Message</a>
+                                </li>
+                            </ul>
+                        </span>
+                    </li>
                 </ul>
-                <ul data-element="6">
-                    <li class="myMex">Ciao<span class="hMex">06:20</span></li>
-                    <li class="usMex ">Sono Davide <span class="hMex">14:21</span></li>
-                    <li class="myMex">Chi te l'ha chiesto?<span class="hMex">21:41</span></li>
+                <ul class="ul-conversation" data-element="6">
+                    <li class="mex myMex">Ciao
+                        <span class="hMex">06:20</span>
+                        <span class="dropdown-icon">
+                            <i class="fas fa-chevron-down"></i>
+                            <ul class="dropdown_menu">
+                                <li class="dropdown_link link_info">
+                                    <a href="#">Info</a>
+                                </li>
+                                <li class="dropdown_link link_delete">
+                                    <a href="#">Delete Message</a>
+                                </li>
+                            </ul>
+                        </span>
+                    </li>
+                    <li class="mex usMex ">Sono Davide 
+                        <span class="hMex">14:21</span>
+                        <span class="dropdown-icon">
+                            <i class="fas fa-chevron-down"></i>
+                            <ul class="dropdown_menu">
+                                <li class="dropdown_link link_info">
+                                    <a href="#">Info</a>
+                                </li>
+                                <li class="dropdown_link link_delete">
+                                    <a href="#">Delete Message</a>
+                                </li>
+                            </ul>
+                        </span>
+                    </li>
+                    <li class="mex myMex">Chi te l'ha chiesto?
+                        <span class="hMex">21:41</span>
+                        <span class="dropdown-icon">
+                            <i class="fas fa-chevron-down"></i>
+                            <ul class="dropdown_menu">
+                                <li class="dropdown_link link_info">
+                                    <a href="#">Info</a>
+                                </li>
+                                <li class="dropdown_link link_delete">
+                                    <a href="#">Delete Message</a>
+                                </li>
+                            </ul>
+                        </span>
+                    </li>
                 </ul>
-                <ul data-element="7">
-                    <li class="myMex">Ciao<span class="hMex">06:20</span></li>
-                    <li class="usMex ">Sono Federico<span class="hMex">14:21</span></li>
-                    <li class="myMex">Chi te l'ha chiesto?<span class="hMex">21:41</span></li>
+                <ul class="ul-conversation" data-element="7">
+                    <li class="mex myMex">Ciao
+                        <span class="hMex">06:20</span>
+                        <span class="dropdown-icon">
+                            <i class="fas fa-chevron-down"></i>
+                            <ul class="dropdown_menu">
+                                <li class="dropdown_link link_info">
+                                    <a href="#">Info</a>
+                                </li>
+                                <li class="dropdown_link link_delete">
+                                    <a href="#">Delete Message</a>
+                                </li>
+                            </ul>
+                        </span>
+                    </li>
+                    <li class="mex usMex ">Sono Federico
+                        <span class="hMex">14:21</span>
+                        <span class="dropdown-icon">
+                            <i class="fas fa-chevron-down"></i>
+                            <ul class="dropdown_menu">
+                                <li class="dropdown_link link_info">
+                                    <a href="#">Info</a>
+                                </li>
+                                <li class="dropdown_link link_delete">
+                                    <a href="#">Delete Message</a>
+                                </li>
+                            </ul>
+                        </span>
+                    </li>
+                    <li class="mex myMex">Chi te l'ha chiesto?
+                        <span class="hMex">21:41</span>
+                        <span class="dropdown-icon">
+                            <i class="fas fa-chevron-down"></i>
+                            <ul class="dropdown_menu">
+                                <li class="dropdown_link link_info">
+                                    <a href="#">Info</a>
+                                </li>
+                                <li class="dropdown_link link_delete">
+                                    <a href="#">Delete Message</a>
+                                </li>
+                            </ul>
+                        </span>
+                    </li>
                 </ul>
             </main>
             <footer class="chat_row-send u_flex">
@@ -244,14 +561,43 @@
     </div>
 
 
+
     <!-- template messaggi -->
     
     <div class="template">
         <!-- mymex --> 
-        <li class="myMex"><span class="hMex"></span></li>
-
+        <li class="mex myMex">
+            <span class="hMex"></span>
+            <span class="dropdown-icon">
+                <i class="fas fa-chevron-down"></i>
+                <ul class="dropdown_menu">
+                    <li class="dropdown_link link_info">
+                        <a href="#">Info</a>
+                    </li>
+                    <li class="dropdown_link link_delete">
+                        <a href="#">Delete Message</a>
+                    </li>
+                </ul>
+            </span>
+        </li>
+        <!-- <li class="myMex"><span class="hMex"></span><span class="dropdown-icon"></span></li> -->
         <!-- user mex -->
-        <li class="usMex ">Ok!<span class="hMex"></span></li>
+        <li class="mex usMex "> Ok!
+            <span class="hMex">14:21</span>
+            <span class="dropdown-icon">
+                <i class="fas fa-chevron-down"></i>
+                <ul class="dropdown_menu">
+                    <li class="dropdown_link link_info">
+                        <a href="#">Info</a>
+                    </li>
+                    <li class="dropdown_link link_delete">
+                        <a href="#">Delete Message</a>
+                    </li>
+                </ul>
+            </span>
+        </li>
+
+        <!-- <li class="usMex ">Ok!<span class="hMex"></span></li> -->
     </div>
         
 

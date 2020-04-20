@@ -18,29 +18,7 @@ $(document).ready( function() {
  var accountRow = $('.side_account__profiles .profile_row');
  var chatInput = $('.col_send__input .chatInput');
  var iconActionSend = $('.col_send__action .actionSend');
- var ulChat = $('.chat_row-chatting ul.active-chat');
-
- var arrayUser = [];
- var arrayChat = [];
-
-
- //array creati per fare un test. Li lascio come appunto per me stesso
- accountRow.each( function() {
-
-    arrayUser.push($(this));
-
- });
-
- $('.chat_row-chatting ul').each( function() {
-
-    arrayChat.push($(this));  
-
- });
-
- console.table(arrayUser);
- console.table(arrayChat);
- 
-
+ var ulChat = $('.chat_row-chatting .ul-conversation.active-chat');
  
 
 // aggiungo Funzionalità al click su una RowProfile
@@ -53,15 +31,15 @@ accountRow.click( function() {
     var attrThis = $(this).attr('data-element');
 
     // uso un each per trovare il data-element che ha lo stesso valore di quello cliccato
-    $('.chat_row-chatting ul').each( function(valore) { 
+    $('.chat_row-chatting .ul-conversation').each( function(valore) { 
 
         if(attrThis == valore) {
             //rimuovo la classe dove c'è
-            $('.chat_row-chatting ul.active-chat').removeClass('active-chat');
+            $('.chat_row-chatting .ul-conversation.active-chat').removeClass('active-chat');
             //l'aggiungo sull'ul restituito
             $(this).addClass('active-chat')
             
-            ulChat = $('.chat_row-chatting ul.active-chat');
+            ulChat = $('.chat_row-chatting .ul-conversation.active-chat');
         }
 
     });
@@ -83,10 +61,13 @@ accountRow.click( function() {
 //Filtro la lista quando comincio a scrivere nell'input
 $('.side_account__search input').on('keyup', function() {
     var value = $(this).val().toLowerCase();
+
     $('#mylist li').filter(function () {
 
-        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)    
-    }); 
+        $(this).toggle($(this).text().toLowerCase().includes(value))
+
+    });
+     
 });
 
 // cambio icona micro con icona invio al focus dell'input chat
@@ -110,31 +91,8 @@ $(chatInput).keyup(function(event) {
     // controllo che nell'input sia stato scritto qualcosa
     if(chatInput.val() !== ''){
         // Se è vero allora procedo con l'inserimento
-        if(event.keyup == 13 || event.keyCode == 13) {
-            // Chiamo funzione hour per avere orario esatto dell'invio
-            hour();
-            //Inserisco orario nello span
-            var h = $('.template .myMex span');
-            h.html(hourNow);
-
-            //Clono il template
-            var myMexClone = $('.template .myMex').clone();     
-      
-            //Inserisco il testo
-            myMexClone.prepend(chatInput.val());
-            
-            //Inserisco mex nella ul della chat
-
-            ulChat.append(myMexClone);
-
-            //Puliamo il campo input
-            chatInput.val('');
-
-            //pulisco lo span con l'orario
-            h.html('');     
-            
-            // Chiamo una funzione che mi da una risposta automatica dopo 1.5s
-            setTimeout(usMex, 1500);
+        if(event.which == 13) {
+            sendMessage(chatInput.val());
         };
     };
 });
@@ -145,32 +103,12 @@ $(iconActionSend).click( function() {
 
     // controllo che nell'input sia stato scritto qualcosa
     if(chatInput.val() !== ''){
-        // Se è vero allora procedo con l'inserimento
-            // Chiamo funzione hour per avere orario esatto dell'invio
-            hour();
-            //Inserisco orario nello span
-            var h = $('.template .myMex span');
-            h.html(hourNow);
-
-            //Clono il template
-            var myMexClone = $('.template .myMex').clone();     
-      
-            //Inserisco il testo
-            myMexClone.prepend(chatInput.val());
-            
-            //Inserisco mex nella ul della chat
-            ulChat.append(myMexClone);
-
-            //Puliamo il campo input
-            chatInput.val('');
-
-            //pulisco lo span con l'orario
-            h.html('');
-            
-            // Chiamo una funzione che mi da una risposta automatica dopo 1.5s
-            setTimeout(usMex, 1500);
-        };
+        sendMessage(chatInput.val());
+    }    
 });
+
+
+dropdownMessages()
 
 
 
@@ -186,7 +124,7 @@ function usMex() {
     // Chiamo funzione hour per avere orario esatto dell'invio
     hour();
     //Inserisco orario nello span
-    var h = $('.template .usMex span');
+    var h = $('.template .usMex .hMex');
     h.html(hourNow);
 
     //Clono il template
@@ -197,6 +135,83 @@ function usMex() {
 
     //pulisco lo span con l'orario
      h.html('');
+
+    // il contenitore mantiene il focus sull'ultimo messaggio arrivato
+    $('.chat_row-chatting').scrollTop($('.chat_row-chatting').prop('scrollHeight'))
+     
+    // Collegamenti alle funzioni Dropdown dei messaggi
+    dropdownMessages();
+};
+
+// Invia nuovo messaggio
+function sendMessage(input) {
+    
+
+    // Chiamo funzione hour per avere orario esatto dell'invio
+    hour();
+    //Inserisco orario nello span
+    var h = $('.template .myMex .hMex');
+    h.html(hourNow);
+
+    //Clono il template
+    var myMexClone = $('.template .myMex').clone();     
+    console.log(myMexClone);
+    
+    // Collegamenti alle funzioni Dropdown dei messaggi
+    dropdownMessages();
+
+    //Inserisco il testo
+    myMexClone.prepend(chatInput.val());
+    
+    //Inserisco mex nella ul della chat
+    ulChat.append(myMexClone);
+
+    //Puliamo il campo input
+    chatInput.val('');
+
+    //pulisco lo span con l'orario
+    h.html('');
+    
+    // Chiamo una funzione che mi da una risposta automatica dopo 1.5s
+    setTimeout(usMex, 1500);
+
+    // il contenitore mantiene il focus sull'ultimo messaggio arrivato
+    $('.chat_row-chatting').scrollTop($('.chat_row-chatting').prop('scrollHeight'))
+
+};
+
+
+// Gestione Dropdowmn menu dei messaggi
+function dropdownMessages() {
+    
+    // Toggle quando il mouse entra in un mex
+    $('.chat_row-chatting ul li.mex').mouseenter( function() {   
+    
+        // faccio il toggle dell'elemento dove sono in hover
+        $(this).children('.dropdown-icon').toggle();;
+        console.log('entrato');
+
+    }); 
+
+    //  Toggle del dropdown menu quando il mouse esce dal mex 
+    $('.chat_row-chatting ul li.mex').mouseleave( function() {    
+
+        $(this).children('.dropdown-icon').toggle();   
+
+    });
+
+    $('.chat_row-chatting ul li .dropdown-icon i').click( function() {
+
+        $(this).next('.dropdown_menu').toggle();
+
+    });
+
+    // Delete mex tramite pulsante "Delete Message" nel dropdown-menu
+    $('.chat_row-chatting .dropdown_menu .link_delete').click( function() {
+
+        $(this).parents('.mex').text('Questo messaggio è stato eliminato.').addClass('mex-deleted')
+    
+    });
 
 };
 
