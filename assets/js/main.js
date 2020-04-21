@@ -4,15 +4,6 @@ $(document).ready( function() {
  * 
  * WhatsApp Web
  * 
- * Replica della grafica (allegata sotto con gli assets) con la possibilità di avere messaggi
- * stilati e posizionati diversamente in base a: messaggio dall’utente (verdi) e messaggio
- * dall’interlocutore (bianco) assegnando due classi CSS diverse.
- * Aggiunta di un messaggio: l’utente scrive un testo nella parte bassa e cliccando icona ‘invia il
- * testo’ viene aggiunto al thread sopra, come messaggio verde (ricordate focus() )
- * Font family: Lato
- * Messaggi visibili inizialmente sono inseriti statici nell’HTML
- * Usate un template nell’html e clone() per l’ inserimento del messaggio da fare in JS
- * 
  *********************************/
 
  var accountRow = $('.side_account__profiles .profile_row');
@@ -28,21 +19,17 @@ accountRow.click( function() {
     $('.profile_row.active').removeClass('active');
     $(this).addClass('active');
 
-    var attrThis = $(this).attr('data-element');
 
-    // uso un each per trovare il data-element che ha lo stesso valore di quello cliccato
-    $('.chat_row-chatting .ul-conversation').each( function(valore) { 
 
-        if(attrThis == valore) {
-            //rimuovo la classe dove c'è
-            $('.chat_row-chatting .ul-conversation.active-chat').removeClass('active-chat');
-            //l'aggiungo sull'ul restituito
-            $(this).addClass('active-chat')
-            
-            ulChat = $('.chat_row-chatting .ul-conversation.active-chat');
-        }
+    var element = $(this).attr('data-element');
 
-    });
+    // Reset della classe
+    $('.chat_row-chatting .ul-conversation').removeClass('active-chat');
+
+    // Show active
+    $('.chat_row-chatting .ul-conversation[data-element="' + element + '"]').addClass('active-chat')
+
+
 
     // Leggo il nome utente e l'immagine della Row
     var nameUser = $('.profile_row.active .profile_col__info .nameUser').text();
@@ -60,7 +47,7 @@ accountRow.click( function() {
 
 //Filtro la lista quando comincio a scrivere nell'input
 $('.side_account__search input').on('keyup', function() {
-    var value = $(this).val().toLowerCase();
+    var value = $(this).val().toLowerCase().trim();
 
     $('#mylist li').filter(function () {
 
@@ -107,16 +94,20 @@ $(iconActionSend).click( function() {
     }    
 });
 
-
+// Dropdown menu dei messaggi pre-caricati
 dropdownMessages()
 
 
 
-// function
+/***************
+ *  FUNCTIONS
+***************/
 
 function hour() {
-    var dateNow = new Date(); // prendo info data dal sistema
-    hourNow = (dateNow.getHours()<10?'0':'') + dateNow.getHours() + ':' + (dateNow.getMinutes()<10?'0':'') + dateNow.getMinutes(); // assegno solo ora e minuti
+    // prendo info data dal sistema
+    var dateNow = new Date(); 
+    // assegno solo ora e minuti
+    hourNow = (dateNow.getHours()<10?'0':'') + dateNow.getHours() + ':' + (dateNow.getMinutes()<10?'0':'') + dateNow.getMinutes(); 
 }
 
 
@@ -124,23 +115,32 @@ function usMex() {
     // Chiamo funzione hour per avere orario esatto dell'invio
     hour();
     //Inserisco orario nello span
-    var h = $('.template .usMex .hMex');
+    var h = $('.template .mex .hMex');
     h.html(hourNow);
 
     //Clono il template
-    var usMexClone = $('.template .usMex').clone();
+    var usMexClone = $('.template .mex').clone();
+
+    usMexClone.children('.mex-text').text('Ok!');
 
     //Inserisco mex nella ul della chat
-    ulChat.append(usMexClone);
+    $('.chat_row-chatting .ul-conversation.active-chat').append(usMexClone);
 
     //pulisco lo span con l'orario
      h.html('');
 
     // il contenitore mantiene il focus sull'ultimo messaggio arrivato
-    $('.chat_row-chatting').scrollTop($('.chat_row-chatting').prop('scrollHeight'))
+    scrollchat()
      
     // Collegamenti alle funzioni Dropdown dei messaggi
     dropdownMessages();
+
+    // Quando il bot risponde setto la stringa dell'ultimo accesso su "online"
+    online()
+
+    // Dopo 4 sec simulo la chiusura dell'app da parte del bot
+    // aggiungendo la stringa originale, aggiornata con il nuovo orario-
+    setTimeout(onlineOff, 4000)
 };
 
 // Invia nuovo messaggio
@@ -150,13 +150,14 @@ function sendMessage(input) {
     // Chiamo funzione hour per avere orario esatto dell'invio
     hour();
     //Inserisco orario nello span
-    var h = $('.template .myMex .hMex');
+    var h = $('.template .mex .hMex');
     h.html(hourNow);
 
     //Clono il template
-    var myMexClone = $('.template .myMex').clone();     
-    console.log(myMexClone);
+    var myMexClone = $('.template .mex').clone();     
     
+    myMexClone.addClass('myMex');
+
     // Collegamenti alle funzioni Dropdown dei messaggi
     dropdownMessages();
 
@@ -164,7 +165,7 @@ function sendMessage(input) {
     myMexClone.prepend(chatInput.val());
     
     //Inserisco mex nella ul della chat
-    ulChat.append(myMexClone);
+    $('.chat_row-chatting .ul-conversation.active-chat').append(myMexClone);
 
     //Puliamo il campo input
     chatInput.val('');
@@ -173,10 +174,10 @@ function sendMessage(input) {
     h.html('');
     
     // Chiamo una funzione che mi da una risposta automatica dopo 1.5s
-    setTimeout(usMex, 1500);
+    setTimeout(usMex, 1000);
 
     // il contenitore mantiene il focus sull'ultimo messaggio arrivato
-    $('.chat_row-chatting').scrollTop($('.chat_row-chatting').prop('scrollHeight'))
+    scrollchat()
 
 };
 
@@ -200,6 +201,7 @@ function dropdownMessages() {
 
     });
 
+    // Apertura dropdown menu al click sull'icona
     $('.chat_row-chatting ul li .dropdown-icon i').click( function() {
 
         $(this).next('.dropdown_menu').toggle();
@@ -209,10 +211,52 @@ function dropdownMessages() {
     // Delete mex tramite pulsante "Delete Message" nel dropdown-menu
     $('.chat_row-chatting .dropdown_menu .link_delete').click( function() {
 
-        $(this).parents('.mex').text('Questo messaggio è stato eliminato.').addClass('mex-deleted')
-    
+        // Elimina il messaggio
+        $(this).parents('.mex').remove()
+
     });
 
+    // Aggiunge stringa anziché rimuovere il messaggio
+    $('.chat_row-chatting .dropdown_menu .link_deleteAll').click( function() {
+
+        // Sostituisci testo messaggio e aggiungo classe per stile
+        $(this).parents('.mex').text('Questo messaggio è stato eliminato.').addClass('mex-deleted')
+
+    });
+    
+        
 };
+
+// Funzione per lo scroll
+
+function scrollchat() {
+
+    $('.chat_row-chatting').scrollTop($('.chat_row-chatting').prop('scrollHeight'))
+
+};
+
+// funzione che richiamo per settare per un tot di secondi lo stato online al contatto
+function online() {
+    $('.chat_row-info .col_info__name h3').text('online');
+}
+
+// Passati i secondi di stato online ripristino la stringa aggiornandola all'orario di sistema
+function onlineOff() {
+    hour()
+    $('.chat_row-info .col_info__name h3').text('ultimo accesso oggi alle ' + hourNow);
+}
+
+/**
+ * 
+ *  NOTA BENE: quando l'orario si aggiorna, lo fa per tutti i contatti. 
+ *  Per poter avere l'ultimo accesso aggiornato per ogni contatto
+ *  avrei dovuto fare molte modifiche. Non essendo una task dell'esercizio
+ *  preferisco non rischiare di rovinare il lavoro prima della valutazione.
+ * 
+ *  In seguito, nei prossimi giorni, provvederò a modificare l'assetto del tutto
+ *  per rendere anche questa funzione unica per ogni utente e chat.
+ *
+ * 
+ */
 
 }); // <- End Doc Ready

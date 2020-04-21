@@ -332,7 +332,7 @@ a {
 }
 
 .dropdown_menu {
-    z-index: 1;
+    z-index: 1 ;
     display: none; /* JQuery */
     position: absolute;
     width: max-content;
@@ -346,8 +346,12 @@ a {
     border-radius: 5px;
 }
 
-.dropdown_menu .dropdown_link:first-child {
+.dropdown_menu .dropdown_link {
     margin-bottom: 5px;
+}
+
+.dropdown_menu .dropdown_link:last-child {
+    margin: 0;
 }
 
 .dropdown_menu .dropdown_link:hover {
@@ -356,28 +360,25 @@ a {
 
 /* MEX */
 
-.myMex,
-.usMex {
+.mex {
     position: relative;
     min-width: 20px;
     max-width: 45%;
     border-radius: 8px;
     padding: 15px 40px 15px 15px;
     margin: 5px 0;
-    word-break: break-word;        
+    word-break: break-word;  
+    float: left;
+    clear: both;
+    background: #fff; 
 }
 
-.myMex {
+
+.mex.myMex {
     float: right;
     clear: both;
     background: #d5faba;
 
-}
-
-.usMex {
-    float: left;
-    clear: both;
-    background: #fff;
 }
 
 /* CHAT ROW SEND */
